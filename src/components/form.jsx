@@ -6,8 +6,9 @@ export default function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setTitle("")
-    setDescription("")
+    alert(title);
+    setTitle("");
+    setDescription("");
   }
 
   return (
