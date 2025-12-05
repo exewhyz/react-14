@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-
-const url =
-  "https://api.weatherapi.com/v1/current.json?key=cc51a035fb6647b6bc445321250412&q=Chandigarh";
+import { useData } from "../context/dataContext";
 
 export default function Weather() {
+  const { city } = useData();
+
+  const url = `https://api.weatherapi.com/v1/current.json?key=cc51a035fb6647b6bc445321250412&q=${city}`;
+
   const [weatherData, setWeatherData] = useState();
   const [error, setError] = useState();
 
@@ -12,7 +14,7 @@ export default function Weather() {
       .then((res) => res.json())
       .then((data) => setWeatherData(data))
       .catch((err) => setError(err.message));
-  }, []);
+  }, [city]);
   return (
     <div>
       {!error ? (

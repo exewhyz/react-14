@@ -1,39 +1,25 @@
-import { useState } from "react";
+import { useData } from "../context/dataContext";
 
 export default function Form() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const { city, setCity } = useData();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(title);
-    setTitle("");
-    setDescription("");
-  }
+  };
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <label htmlFor="title">Title</label>
+      <label htmlFor="city">City Name</label>
       <input
-        id="title"
+        id="city"
         type="text"
-        placeholder="Enter title for the blog"
+        placeholder="Enter city name"
         required
-        value={title}
-        onChange={(e)=>{ setTitle(e.target.value) }}
+        value={city}
+        onChange={(e) => {
+          setCity(e.target.value);
+        }}
       />
-      <label htmlFor="desc">Description</label>
-      <textarea
-        id="desc"
-        type="text"
-        placeholder="Enter description for the blog"
-        required
-        value={description}
-        onChange={(e)=>{setDescription(e.target.value)}}
-        cols="20"
-        rows="3"
-      />
-      <button>Create Blog</button>
     </form>
   );
 }
