@@ -1,15 +1,24 @@
-import Form from "./components/form";
-import Weather from "./components/weather";
 import { DataProvider } from "./context/dataContext";
+import { BrowserRouter, Routes, Route } from "react-router";
+import Homepage from "./pages/homepage";
+import About from "./pages/about";
+import Navbar from "./components/navbar"
+import Footer from "./components/footer"
+import NotFound from "./pages/notFound";
 
 function App() {
   return (
-    <DataProvider>
-      <div className="main">
-        <Form />
-        <Weather />
-      </div>
-    </DataProvider>
+    <BrowserRouter>
+      <DataProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </DataProvider>
+    </BrowserRouter>
   );
 }
 
